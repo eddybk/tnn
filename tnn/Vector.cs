@@ -24,5 +24,100 @@
             }
             return temp.Sum();
         }
+        public float this[int index]
+        {
+            get => _Data[index];
+            set => _Data[index] = value;
+        }
+        public static Vector operator +(Vector self, float other)
+        {
+            self._Data = self._Data.Select(x => x + other).ToList();
+            return self;
+        }
+        public static Vector operator +(Vector self, Vector other)
+        {
+            for (int i = 0; i < self._Data.Count; i++)
+            {
+                try
+                {
+                    self._Data[i] += other._Data[i];
+                }
+                catch(IndexOutOfRangeException)
+                {
+                    continue;
+                }
+            }
+            return self;
+        }
+        public static Vector operator -(Vector self, float other)
+        {
+            self._Data = self._Data.Select(x => x - other).ToList();
+            return self;
+        }
+        public static Vector operator -(Vector self, Vector other)
+        {
+            for (int i = 0; i < self._Data.Count; i++)
+            {
+                try
+                {
+                    self._Data[i] -= other._Data[i];
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    continue;
+                }
+            }
+            return self;
+        }
+        public static Vector operator *(Vector self, float other)
+        {
+            self._Data = self._Data.Select(x => x * other).ToList();
+            return self;
+        }
+        public static Vector operator *(Vector self, Vector other)
+        {
+            for (int i = 0; i < self._Data.Count; i++)
+            {
+                try
+                {
+                    self._Data[i] *= other._Data[i];
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    continue;
+                }
+            }
+            return self;
+        }
+        public static Vector operator /(Vector self, float other)
+        {
+            self._Data = self._Data.Select(x => x / other).ToList();
+            return self;
+        }
+        public static Vector operator /(Vector self, Vector other)
+        {
+            for (int i = 0; i < self._Data.Count; i++)
+            {
+                try
+                {
+                    self._Data[i] /= other._Data[i];
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    continue;
+                }
+            }
+            return self;
+        }
+        public override string ToString()
+        {
+            var ret = "[ ";
+            foreach (var item in _Data)
+            {
+                ret += item.ToString() + " ";
+            }
+            ret += "]";
+            return ret;
+        } 
     }
 }
