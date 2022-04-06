@@ -16,7 +16,13 @@
         public Matrix ToColumnMatrix() => new Matrix(1, _Data.Count).Set(new float[][] { _Data.ToArray() })!;
         public float? Dot(Vector other)
         {
-            return null;
+            if (_Data.Count != other._Data.Count) return null;
+            var temp = new List<float>();
+            for (int i = 0; i < _Data.Count; i++)
+            {
+                temp.Add(_Data[i] * other._Data[i]);
+            }
+            return temp.Sum();
         }
     }
 }
