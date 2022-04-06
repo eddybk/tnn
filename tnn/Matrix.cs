@@ -81,12 +81,26 @@
         {
             return Set(data.Select(row => row.Select(col => col).ToList()).ToList());
         }
-        public List<List<float>> ToList() => _Data;
-        public static Matrix operator +(Matrix self, float other) => self.SetUnsafe(self.ToList().Select(row => row.Select(col => col + other).ToList()).ToList());
-        public static Matrix operator -(Matrix self, float other) => self.SetUnsafe(self.ToList().Select(row => row.Select(col => col - other).ToList()).ToList());
-        public static Matrix operator *(Matrix self, float other) => self.SetUnsafe(self.ToList().Select(row => row.Select(col => col * other).ToList()).ToList());
-        public static Matrix operator /(Matrix self, float other) => self.SetUnsafe(self.ToList().Select(row => row.Select(col => col / other).ToList()).ToList());
+        public List<List<float>> AsList() => _Data;
+        public static Matrix operator +(Matrix self, float other) => self.SetUnsafe(self.AsList().Select(row => row.Select(col => col + other).ToList()).ToList());
+        public static Matrix operator -(Matrix self, float other) => self.SetUnsafe(self.AsList().Select(row => row.Select(col => col - other).ToList()).ToList());
+        public static Matrix operator *(Matrix self, float other) => self.SetUnsafe(self.AsList().Select(row => row.Select(col => col * other).ToList()).ToList());
+        public static Matrix operator /(Matrix self, float other) => self.SetUnsafe(self.AsList().Select(row => row.Select(col => col / other).ToList()).ToList());
 
+        public override string ToString()
+        {
+            var ret = "[\n";
+            foreach (var row in _Data)
+            {
+                var rowString = "    [ ";
+                row.ForEach(item => rowString += item.ToString() + " ");
+                rowString = rowString.TrimEnd();
+                rowString += " ]\n";
+                ret += rowString;
+            }
+            ret += "]";
+            return ret;
+        }
         public void Print()
         {
             Console.WriteLine("[");
