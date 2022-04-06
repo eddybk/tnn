@@ -23,7 +23,7 @@
                 temp.Add(_Data[i] * other._Data[i]);
             }
             return temp.Sum();
-        }
+        } 
         public float this[int index]
         {
             get => _Data[index];

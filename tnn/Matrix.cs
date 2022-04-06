@@ -70,23 +70,21 @@
             _Data = data;
             return this;
         }
-        public Matrix? Set(float[,] data)
-        {
-            return Set(Enumerable.Range(0, data.GetLength(0))
-                .Select(row => Enumerable.Range(0, data.GetLength(1))
-                .Select(col => data[row, col]).ToList()).ToList()
+        public Matrix? Set(float[,] data) => Set(Enumerable.Range(0, data.GetLength(0))
+                    .Select(row => Enumerable.Range(0, data.GetLength(1))
+                    .Select(col => data[row, col]).ToList()).ToList()
                 );
-        }
-        public Matrix? Set(float[][] data)
-        {
-            return Set(data.Select(row => row.Select(col => col).ToList()).ToList());
-        }
+
+        public Matrix? Set(float[][] data) => Set(data.Select(row => row.Select(col => col).ToList()).ToList());
         public List<List<float>> AsList() => _Data;
         public static Matrix operator +(Matrix self, float other) => self.SetUnsafe(self.AsList().Select(row => row.Select(col => col + other).ToList()).ToList());
         public static Matrix operator -(Matrix self, float other) => self.SetUnsafe(self.AsList().Select(row => row.Select(col => col - other).ToList()).ToList());
         public static Matrix operator *(Matrix self, float other) => self.SetUnsafe(self.AsList().Select(row => row.Select(col => col * other).ToList()).ToList());
         public static Matrix operator /(Matrix self, float other) => self.SetUnsafe(self.AsList().Select(row => row.Select(col => col / other).ToList()).ToList());
-
+        public List<float> this[int index]
+        {
+            get => _Data[index];
+        } 
         public override string ToString()
         {
             var ret = "[\n";
