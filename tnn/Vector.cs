@@ -44,7 +44,7 @@
                 }
                 catch(IndexOutOfRangeException)
                 {
-                    continue;
+                    break;
                 }
             }
             return self;
@@ -64,7 +64,7 @@
                 }
                 catch (IndexOutOfRangeException)
                 {
-                    continue;
+                    break;
                 }
             }
             return self;
@@ -84,7 +84,7 @@
                 }
                 catch (IndexOutOfRangeException)
                 {
-                    continue;
+                    break;
                 }
             }
             return self;
@@ -104,7 +104,7 @@
                 }
                 catch (IndexOutOfRangeException)
                 {
-                    continue;
+                    break;
                 }
             }
             return self;
